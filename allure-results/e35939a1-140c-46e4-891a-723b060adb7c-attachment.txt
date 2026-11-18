@@ -1,0 +1,12 @@
+New Booking is Created: {
+  bookingid: 1250,
+  booking: {
+    firstname: 'Jim',
+    lastname: 'Brown',
+    totalprice: 111,
+    depositpaid: true,
+    bookingdates: { checkin: '2027-04-01', checkout: '2027-05-01' },
+    additionalneeds: 'Breakfast'
+  }
+}
+Booking ID: 1250

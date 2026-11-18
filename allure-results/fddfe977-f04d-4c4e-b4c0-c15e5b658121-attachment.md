@@ -1,0 +1,56 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Api\ApiWithJson.spec.ts >> Api Testing eith json Data File >> Create Booking with Json Data
+- Location: tests\Api\ApiWithJson.spec.ts:7:5
+
+# Error details
+
+```
+Error: ENOENT: no such file or directory, open 'C:\Users\anuso\OneDrive\Documents\Playwright_Ecom_Automation\tests\Api\testDatas\Booking.json'
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect} from "@playwright/test";
+  2  | import fs from "fs" ; //read the file 
+  3  | import path from "path";
+  4  | 
+  5  | test.describe("Api Testing eith json Data File",()=>{
+  6  | 
+  7  | test("Create Booking with Json Data",async({request})=>{
+  8  | 
+  9  |   // read the json file   
+  10 | const jsonPath = path.join(__dirname, "./testDatas/Booking.json");//__dirname (Works from any folder)
+> 11 | const filepath = fs.readFileSync(jsonPath, "utf-8");
+     |                     ^ Error: ENOENT: no such file or directory, open 'C:\Users\anuso\OneDrive\Documents\Playwright_Ecom_Automation\tests\Api\testDatas\Booking.json'
+  12 | const NewBooking = JSON.parse(filepath);
+  13 | 
+  14 | 
+  15 |  const CreateBooking = await request.post("https://restful-booker.herokuapp.com/booking",
+  16 |     {
+  17 | 
+  18 |         headers:{
+  19 |                    "Content-Type":"application/json",
+  20 |                 },
+  21 |        data:NewBooking
+  22 |     });
+  23 | 
+  24 | expect(CreateBooking.status()).toBe(200);
+  25 | const ResponseBody = await CreateBooking.json();
+  26 | 
+  27 | console.log("New Booking is Created:",ResponseBody);
+  28 | 
+  29 | console.log("Booking ID:",ResponseBody.bookingid);
+  30 | expect(ResponseBody.booking.firstname).toBe(NewBooking.firstname);
+  31 | expect(ResponseBody.booking.bookingdates.checkin).toEqual(NewBooking.bookingdates.checkin);
+  32 | 
+  33 | })
+  34 | })
+```

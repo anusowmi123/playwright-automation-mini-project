@@ -1,9 +1,9 @@
 import { test as base, Page, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage.ts';// passing pom here so , only pass the fixture to access pom in test
+import { LoginPage } from '../pages/LoginPage';// passing pom here so , only pass the fixture to access pom in test
 import { ProductSeach } from "..//pages/SearchProductPage";
-import { ProductDetails } from '../pages/ProductDetailsPage.ts';
-import { ShoppingCart } from '../pages/ShoppingCartPage.ts';
-import { Checkout } from '../pages/CheckoutPage.ts';
+import { ProductDetails } from '../pages/ProductDetailsPage';
+import { ShoppingCart } from '../pages/ShoppingCartPage';
+import { Checkout } from '../pages/CheckoutPage';
 
 
 type MyFixture = { // Type definition his just tells TypeScript, 
